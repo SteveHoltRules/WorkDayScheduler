@@ -75,9 +75,3 @@ $(document).ready(function(){
   displayHours();
 });
 
-var beginningTime = moment('8:45pm', 'h:mma');
-var endTime = moment('9:00pm', 'h:mma');
-console.log(beginningTime.isBefore(endTime)); // true
-console.log(beginningTime.toDate()); // Mon May 12 2014 08:45:00
-console.log(endTime.toDate()); // Mon May 12 2014 09:00:00
-
