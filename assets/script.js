@@ -37,6 +37,7 @@ var createSchedule = function (i) {
     .attr('id', "lock")
     .text('🔒');
   
+  // I am stuck on the time compare piece
   var textTime = i;
   var schedTime = moment(textTime, 'H HH a A m mm');
   var nowTime = moment();
@@ -45,6 +46,7 @@ var createSchedule = function (i) {
   console.log(textTime);
   console.log(curTime);
 
+  // Compare now to the value in the schedule
   if(schedTime){
     var taskInput = $("<input>").addClass("form-control list-group-item-primary")
       .attr('id', `${i}`);
