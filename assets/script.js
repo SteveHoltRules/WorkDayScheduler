@@ -38,8 +38,9 @@ var createSchedule = function (i) {
     .text('🔒');
   
   // I am stuck on the time compare piece
+
+  var schedTime = moment().hour(`${textTime}`);
   var textTime = i;
-  var schedTime = moment(textTime, 'H HH a A m mm');
   var nowTime = moment();
   var curTime = nowTime.hour();
   console.log(schedTime);
