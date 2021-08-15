@@ -12,7 +12,7 @@ $(document).ready(function () {
 //Design the function to compare each input field by the current time
 //If the hour = now, then blue, if before, then grey, if after, green.
 
-var startTime = moment('08:00 +0000', 'HH:mm');
+var startTime = moment('14:00 +0000', 'HH:mm');
 var endTime = moment('17:00 +0000', 'HH:mm Z');
 
 var startTime2 = moment(startTime).add(1, 'h').format('LT');
@@ -31,13 +31,27 @@ var createSchedule = function (i) {
     .addClass("col-sm-2 col-form-label")
     .attr('id', `${i}`)
     .text(i);
-  var taskInput = $("<input>").addClass("form-control list-group-item-primary")
-    .attr('id', `${i}`);
   var taskButton = $("<button>")
     .addClass("btn btn-outline-secondary")
     .attr('type', "button")
     .attr('id', "lock")
     .text('🔒');
+  
+  var textTime = i;
+  var schedTime = moment(textTime, 'H HH a A m mm');
+  var nowTime = moment();
+  var curTime = nowTime.hour();
+  console.log(schedTime);
+  console.log(textTime);
+  console.log(curTime);
+
+  if(schedTime){
+    var taskInput = $("<input>").addClass("form-control list-group-item-primary")
+      .attr('id', `${i}`);
+  }else {
+    var taskInput = $("<input>").addClass("form-control list-group-item-danger")
+      .attr('id', `${i}`);
+  }
 
   taskLi.append(taskTime, taskInput, taskButton);
 
@@ -48,4 +62,10 @@ var createSchedule = function (i) {
 $(document).ready(function(){
   displayHours();
 });
+
+var beginningTime = moment('8:45pm', 'h:mma');
+var endTime = moment('9:00pm', 'h:mma');
+console.log(beginningTime.isBefore(endTime)); // true
+console.log(beginningTime.toDate()); // Mon May 12 2014 08:45:00
+console.log(endTime.toDate()); // Mon May 12 2014 09:00:00
 
