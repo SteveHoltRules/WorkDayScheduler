@@ -12,8 +12,8 @@ $(document).ready(function () {
 //Design the function to compare each input field by the current time
 //If the hour = now, then blue, if before, then grey, if after, green.
 
-var startTime = moment('14:00 +0000', 'HH:mm');
-var endTime = moment('17:00 +0000', 'HH:mm Z');
+var startTime = moment('14:00 +0000', 'hh:mm');
+var endTime = moment('17:00 +0000', 'hh:mm Z');
 
 var startTime2 = moment(startTime).add(1, 'h').format('LT');
 console.log("Start Time: " + startTime2);
@@ -37,18 +37,27 @@ var createSchedule = function (i) {
     .attr('id', "lock")
     .text('🔒');
   
-  // I am stuck on the time compare piece
 
-  var schedTime = moment().hour(`${textTime}`);
-  var textTime = i;
+  var schedTime = i;
+  var colon = i.search(":");
+  var textTime = i.substring(0, colon);
   var nowTime = moment();
   var curTime = nowTime.hour();
   console.log(schedTime);
   console.log(textTime);
   console.log(curTime);
 
+  if (curTime > 12) {
+    console.log("In curTime if Statement");
+    curTime = curTime-12;
+    console.log(curTime);
+  }
+
   // Compare now to the value in the schedule
-  if(schedTime){
+  if(textTime>curTime){
+    var taskInput = $("<input>").addClass("form-control list-group-item-info")
+      .attr('id', `${i}`);
+  } else if (textTime<curTime){
     var taskInput = $("<input>").addClass("form-control list-group-item-primary")
       .attr('id', `${i}`);
   }else {
