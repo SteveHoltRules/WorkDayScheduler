@@ -1,4 +1,4 @@
-## Work Day Scheduler Starter Code
+## Work Day Scheduler Prompt
 AS AN employee with a busy schedule
 I WANT to add important events to a daily planner
 SO THAT I can manage my time effectively
@@ -17,3 +17,4 @@ THEN the text for that event is saved in local storage
 WHEN I refresh the page
 THEN the saved events persist
 
+### The workday schedule does not contain a save function. That will be built later. Also, in the time comparative section, the times are reported in 12 hours and 24 hours, and does not properly function for a 9-5 workday.  
