@@ -12,7 +12,7 @@ $(document).ready(function () {
 //Design the function to compare each input field by the current time
 //If the hour = now, then blue, if before, then grey, if after, green.
 
-var startTime = moment('14:00 +0000', 'hh:mm');
+var startTime = moment('08:00 +0000', 'hh:mm');
 var endTime = moment('17:00 +0000', 'hh:mm Z');
 
 var startTime2 = moment(startTime).add(1, 'h').format('LT');
