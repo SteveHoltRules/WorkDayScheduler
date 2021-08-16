@@ -12,11 +12,8 @@ $(document).ready(function () {
 //Design the function to compare each input field by the current time
 //If the hour = now, then blue, if before, then grey, if after, green.
 
-var startTime = moment('14:00 +0000', 'hh:mm');
+var startTime = moment('08:00 +0000', 'hh:mm');
 var endTime = moment('17:00 +0000', 'hh:mm Z');
-
-var startTime2 = moment(startTime).add(1, 'h').format('LT');
-console.log("Start Time: " + startTime2);
 
 var displayHours = function () {
   for (var i = 0; i < 10; i++) {
@@ -24,22 +21,24 @@ var displayHours = function () {
   }
 }
 
+
+
 //create schedule - select a start time and an end time 
 var createSchedule = function (i) {
+  var colon = i.search(":");
+
   var taskLi = $("<li>").addClass("input-group mb-3");
   var taskTime = $("<label>")
     .addClass("col-sm-2 col-form-label")
-    .attr('id', `${i}`)
+    .attr('id', `${i.substring(0,colon)}`)
     .text(i);
   var taskButton = $("<button>")
     .addClass("btn btn-outline-secondary")
     .attr('type', "button")
-    .attr('id', "lock")
+    .attr('id', `lock`+`${i.substring(0,colon)}`)
     .text('🔒');
   
-
   var schedTime = i;
-  var colon = i.search(":");
   var textTime = i.substring(0, colon);
   var nowTime = moment();
   var curTime = nowTime.hour();
@@ -56,13 +55,13 @@ var createSchedule = function (i) {
   // Compare now to the value in the schedule
   if(textTime>curTime){
     var taskInput = $("<input>").addClass("form-control list-group-item-info")
-      .attr('id', `${i}`);
+      .attr('id', `${i.substring(0,colon)}`);
   } else if (textTime<curTime){
     var taskInput = $("<input>").addClass("form-control list-group-item-primary")
-      .attr('id', `${i}`);
+      .attr('id', `${i.substring(0,colon)}`);
   }else {
     var taskInput = $("<input>").addClass("form-control list-group-item-danger")
-      .attr('id', `${i}`);
+      .attr('id', `${i.substring(0,colon)}`);
   }
 
   taskLi.append(taskTime, taskInput, taskButton);
@@ -75,3 +74,12 @@ $(document).ready(function(){
   displayHours();
 });
 
+
+// var loadTasks = function() {
+//   tasks = JSON.parse(localStorage.getItem("tasks"));
+// };
+
+// I need to save the changes to the local storage. How? Nathan to meet
+// $("#input").on("change", "input[type='text']", function(){
+
+// })
